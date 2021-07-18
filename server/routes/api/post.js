@@ -1,6 +1,4 @@
-// import express from "express";
 const express = require("express");
-
 
 // Model
 // import Post from "../../models/post";

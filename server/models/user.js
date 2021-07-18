@@ -1,5 +1,3 @@
-// const moment = require("moment");
-// const { mongoose } = require("mongoose");
 var moment = require("moment");
 var mongoose = require("mongoose");
 
@@ -50,8 +48,5 @@ const UserSchema = new Mongoose.Schema({
     ]
 });
 
-// const User = mongoose.model({"user", UserSchema});
 const User = mongoose.model("user", UserSchema);
-
-
-exports.User = User;
+module.exports = User;

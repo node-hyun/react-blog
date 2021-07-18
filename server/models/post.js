@@ -44,4 +44,4 @@ const PostSchema = new mongoose.Schema({
 const Post = mongoose.model("post", PostSchema);
 
 // export default Post;
-exports.User = Post;
+module.exports = Post;
