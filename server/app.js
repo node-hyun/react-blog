@@ -2,23 +2,28 @@
 var express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-// var config = "./config";
+const hpp = require("hpp");
+const helmet = require("helmet");
+const cors = require("cors");
+const morgan = require("morgan");
+const postsRoutes = require("./routes/api/post");
 
-// console.log("config : ", config);
-// console.log("config.MONGO_URI : ", config.MONGO_URI);
+app.use(hpp());
+app.use(helmet());
 
-// const { MONGO_URI } = config;
+app.use(cors({ origin: true, credentials: true }));
+app.use(morgan("dev"));
 
-// console.log("MONGO_URI : ", MONGO_URI);
+app.use(express.json());
 
+
+// dot env 설정 start
 var dotenv = require('dotenv')
 console.log("dotenv : ", dotenv)
 dotenv.config();
-
 var MONGO_URI = process.env.MONGO_URI;
-
 console.log("MONGO_URI : ", MONGO_URI)
-
+// dot env 설정 끝
 
 
 mongoose
@@ -32,6 +37,8 @@ mongoose
 
 
 app.get("/")
+app.use("/api/post", postsRoutes);
 
-exports.app = app;
+
+module.exports = app;
 
