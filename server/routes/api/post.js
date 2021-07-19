@@ -1,10 +1,7 @@
 const express = require("express");
-
-// Model
-// import Post from "../../models/post";
 const Post = require("../../models/post");
+const auth = require("../../middleware/auth");
 
-console.log("Pot : ", Post);
 
 const router = express.Router();
 
@@ -15,7 +12,7 @@ router.get("/", async (req, res) => {
     res.json(postFindResult);
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", auth, async (req, res, next) => {
     try {
         // console.log(req, "req");
         const { title, contents, fileUrl, creator } = req.body;
@@ -31,5 +28,4 @@ router.post("/", async (req, res, next) => {
     }
 });
 
-// export default router;
 module.exports = router;

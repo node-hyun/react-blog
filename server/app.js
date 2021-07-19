@@ -1,4 +1,4 @@
-var express = require('express');     
+var express = require('express');
 const mongoose = require('mongoose');
 const config = require("./config");
 
@@ -7,9 +7,12 @@ const helmet = require("helmet");
 const cors = require("cors");
 const morgan = require("morgan");
 const postsRoutes = require("./routes/api/post");
+const userRoutes = require("./routes/api/user");
+// console.log("postsRouter : ", postsRoutes)
+// console.log("userRoutes : ", userRoutes)
 
 const app = express();
-const { MONGO_URI } = config;
+const { MONGO_URI, PORT } = config;
 
 app.use(hpp());
 app.use(helmet());
@@ -18,20 +21,11 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 
-// dot env 설정 start
-// var dotenv = require('dotenv')
-// console.log("dotenv : ", dotenv)
-// dotenv.config();
-// var MONGO_URI = process.env.MONGO_URI;
-// console.log("MONGO_URI : ", MONGO_URI)
-// dot env 설정 끝
-
-
 mongoose
     .connect(MONGO_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-
+        useCreateIndex: true,
     })
     .then(() => console.log("MongoDB connecting Success"))
     .catch((e) => console.log(e));
@@ -39,6 +33,7 @@ mongoose
 
 app.get("/")
 app.use("/api/post", postsRoutes);
+app.use("/api/user", userRoutes);
 
 
 module.exports = app;

@@ -1,7 +1,7 @@
 var moment = require("moment");
 var mongoose = require("mongoose");
 
-const UserSchema = new Mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -36,7 +36,7 @@ const UserSchema = new Mongoose.Schema({
             },
             comment_id: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: comments,
+                ref: "comments",
             }
         }
     ],
