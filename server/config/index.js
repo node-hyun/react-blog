@@ -9,5 +9,3 @@ var PORT = process.env.PORT;
 module.exports.MONGO_URI = MONGO_URI;
 module.exports.JWT_SECRET = JWT_SECRET
 module.exports.PORT = PORT;
-
-

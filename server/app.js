@@ -1,13 +1,13 @@
 var express = require('express');
 const mongoose = require('mongoose');
 const config = require("./config");
-
 const hpp = require("hpp");
 const helmet = require("helmet");
 const cors = require("cors");
 const morgan = require("morgan");
 const postsRoutes = require("./routes/api/post");
 const userRoutes = require("./routes/api/user");
+const authRoutes = require("./routes/api/auth");
 // console.log("postsRouter : ", postsRoutes)
 // console.log("userRoutes : ", userRoutes)
 
@@ -34,6 +34,7 @@ mongoose
 app.get("/")
 app.use("/api/post", postsRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/auth", authRoutes);
 
 
 module.exports = app;
